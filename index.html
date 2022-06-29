@@ -56,25 +56,128 @@
 
   // see more basemap options at https://leaflet-extras.github.io/leaflet-providers/preview/
 
-  // Read markers data from a csv file
-  $.get('./home2campus0503.csv', function(csvString) {
+
+
+
+  // Global variables.
+  var length = 4;
+  let rawSensorData = new Array(length);
+  for (var i = 0; i < length; i++) {
+    rawSensorData[i] = new Array(50000); // make each element an array
+  }
+  var data = [];
+
+  var arrayOfUniqueLocations = [];
+
+  // Read markers data from the first raw sensor data file.
+  $.get('./Raw Sensor Data/Raw_Sensor_Data 1.csv', function(csvString) {
 
     // Use PapaParse to convert string to array of objects
-    var data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
-
-    // For each row in data, create a marker and add it to the map
-    // For each row, columns `Latitude`, `Longitude`, and `Title` are required
+    data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
+    // For each row, put it in the particular row sensor data array if the 
+    // anomaly status of the row is 1.
+    var index = 0;
     for (var i in data) {
       var row = data[i];
-
-      var marker = L.marker([row.lat, row.long], {
+      if (row.anomalyStatus == 1) {
+          rawSensorData[0][index] = row;
+          index++;
+      }
+    }
+    // Put markers on the map.
+    for (var i in rawSensorData[0]) {
+      var marker = L.marker([rawSensorData[0][i].lat, rawSensorData[0][i].long], {
         opacity: 1
-      }).bindPopup(row.timestamp);
-      
+      }).bindPopup(rawSensorData[0][i].timestamp); 
       marker.addTo(map);
     }
-
   });
+
+
+// Read markers data from the first raw sensor data file.
+$.get('./Raw Sensor Data/Raw_Sensor_Data 2.csv', function(csvString) {
+
+  // Use PapaParse to convert string to array of objects
+  data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
+  // For each row, put it in the particular row sensor data array if the 
+  // anomaly status of the row is 1.
+  var index = 0;
+  for (var i in data) {
+    var row = data[i];
+    if (row.anomalyStatus == 1) {
+        rawSensorData[1][index] = row;
+        index++;
+    }
+  }
+  // Put markers on the map.
+  for (var i in rawSensorData[1]) {
+    var marker = L.marker([rawSensorData[1][i].lat, rawSensorData[1][i].long], {
+      opacity: 1
+    }).bindPopup(rawSensorData[1][i].timestamp); 
+    marker.addTo(map);
+  }
+});
+
+
+
+// Read markers data from the first raw sensor data file.
+$.get('./Raw Sensor Data/Raw_Sensor_Data 3.csv', function(csvString) {
+
+  // Use PapaParse to convert string to array of objects
+  data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
+  // For each row, put it in the particular row sensor data array if the 
+  // anomaly status of the row is 1.
+  var index = 0;
+  for (var i in data) {
+    var row = data[i];
+    if (row.anomalyStatus == 1) {
+        rawSensorData[2][index] = row;
+        index++;
+    }
+  }
+  // Put markers on the map.
+  for (var i in rawSensorData[0]) {
+    var marker = L.marker([rawSensorData[2][i].lat, rawSensorData[2][i].long], {
+      opacity: 1
+    }).bindPopup(rawSensorData[2][i].timestamp); 
+    marker.addTo(map);
+  }
+});
+
+
+// Read markers data from the first raw sensor data file.
+$.get('./Raw Sensor Data/Raw_Sensor_Data 4.csv', function(csvString) {
+
+  // Use PapaParse to convert string to array of objects
+  data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
+  // For each row, put it in the particular row sensor data array if the 
+  // anomaly status of the row is 1.
+  var index = 0;
+  for (var i in data) {
+    var row = data[i];
+    if (row.anomalyStatus == 1) {
+        rawSensorData[3][index] = row;
+        index++;
+    }
+  }
+  // Put markers on the map.
+  for (var i in rawSensorData[3]) {
+    var marker = L.marker([rawSensorData[3][i].lat, rawSensorData[3][i].long], {
+      opacity: 1
+    }).bindPopup(rawSensorData[3][i].timestamp); 
+    marker.addTo(map);
+  }
+});
+
+
+
+
+
+
+
+
+
+
 
   map.attributionControl.setPrefix(
     'View <a href="https://github.com/HandsOnDataViz/leaflet-map-csv" target="_blank">code on GitHub</a>'
