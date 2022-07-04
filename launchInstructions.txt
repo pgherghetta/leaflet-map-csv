@@ -1,0 +1,5 @@
+To run the app, do the following:
+1. Delete the current map.html file if you have edited the python file that it references.
+2. Compile the python file with "python3 <file name>". This will generate a new html file in your directory.
+3. Open the html file with a live server. Go to the file, right click in the code (in VS Code), and select
+"Open with Live Server".

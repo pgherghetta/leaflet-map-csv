@@ -1,0 +1,21 @@
+{
+  "name": "distractfreewazescript",
+  "version": "1.0.0",
+  "description": "Build a simple Leaflet map with point markers from a CSV file.",
+  "main": "parserScript.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pgherghetta/leaflet-map-csv.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pgherghetta/leaflet-map-csv/issues"
+  },
+  "homepage": "https://github.com/pgherghetta/leaflet-map-csv#readme"
+}
